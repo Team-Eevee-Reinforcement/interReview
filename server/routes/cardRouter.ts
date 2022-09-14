@@ -4,7 +4,7 @@ const router = express.Router();
 const controller = new cardController();
 
 // get all cards belonging to a user
-router.get('/:user_id', controller.getCards, (req: Request, res: Response) => res.status(200).json(res.locals.cards));
+router.get('/all/:user_id', controller.getCards, (req: Request, res: Response) => res.status(200).json(res.locals.cards));
 
 // get one card
 router.get('/:id', controller.getCard, (req: Request, res: Response) => res.status(200).json(res.locals.card));

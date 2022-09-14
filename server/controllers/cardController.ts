@@ -31,6 +31,7 @@ export class cardController {
       WHERE interviews.user_id=${req.params.user_id};`;
     db.query('get-cards', getCards, []).then((data: any) => {
       res.locals.cards = data.rows;
+      console.log(res.locals.cards);
       return next();
     }).catch((err: any) => {
       return next(err);
@@ -41,6 +42,7 @@ export class cardController {
     const getCard = `SELECT * FROM cards WHERE id=${req.params.id};`;
     db.query('get-card', getCard, []).then((data: any) => {
       res.locals.card = data.rows;
+      console.log(res.locals.card)
       return next();
     }).catch((err: any) => {
       return next(err);
