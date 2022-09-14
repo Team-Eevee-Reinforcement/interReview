@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 // import { Request, Response } from "express";
-const path = require('path');
+import path from 'path';
 
-const cardRouter = require('./routes/cardRouter');
-const interviewRouter = require('./routes/interviewRouter');
-const researchRouter = require('./routes/researchRouter');
-const userRouter = require('./routes/userRouter');
+import cardRouter from './routes/cardRouter';
+import interviewRouter from './routes/interviewRouter';
+import researchRouter from './routes/researchRouter';
+import userRouter from './routes/userRouter';
 
 const PORT = 3000;
 
@@ -16,13 +16,13 @@ const app = express();
  * in req.body
  */
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // routers
+app.use('/user', userRouter);
 app.use('/card', cardRouter);
 app.use('/interview', interviewRouter);
 app.use('/research', researchRouter);
-app.use('/user', userRouter);
 
 /**
  * root

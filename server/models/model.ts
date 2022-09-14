@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 
 // add URI before compiling
+const PG_URI = 'postgres://xylozikk:udaSKtyDVpTrHsLuRBTDZL3blX14X8Sj@jelani.db.elephantsql.com/xylozikk'
 
 // create a new pool here using the connection string above
 const pool = new Pool({
@@ -12,15 +13,10 @@ pool.connect( (err:string) => {
   console.log('Connected to pg database!')
 });
 
-const createUserTable = () : void => {
-  let status : boolean = false;
-  const userTable : string = 'CREATE TABLE IF NOT EXISTS';
-}
 
-// params should be an object 
-module.exports = {
-  query: (text: string, params: any, callback: Function) => {
+export default {
+  query: (text: string, params: string, values: any[]) => {
     console.log('executed query', text);
-    return pool.query(text, params, callback);
+    return pool.query(params, values);
   }
 };
