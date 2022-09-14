@@ -67,7 +67,7 @@ pool.connect( (err:string) => {
 
 
 // params should be an object 
-module.exports = {
+export default {
   query: (text: string, params: string, values: any[]) => {
     console.log('executed query', text);
     return pool.query(text, params);
