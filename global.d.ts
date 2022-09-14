@@ -1,0 +1,1 @@
+declare module '../client/containers/MainContainer.jsx'
