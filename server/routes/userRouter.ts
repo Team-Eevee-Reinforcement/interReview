@@ -1,12 +1,18 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { userController } from '../controllers/userController';
 const router = express.Router();
 const controller = new userController();
 
-// where oauth will be done
+// get all users
+router.get('/', controller.getUsers, (req: Request, res: Response) => res.status(200).json(res.locals.users));
 
-router.get('');
+// get one user
+router.get('/:id', controller.getUser, (req: Request, res: Response) => res.status(200).json(res.locals.user));
 
-router.post('');
+// add a user
+router.post('/', controller.addUser, (req: Request, res: Response) => res.status(200).json(res.locals.newUserId));
 
-module.exports = router;
+// delete a user
+router.delete('/:id', controller.deleteUser, (req: Request, res: Response) => res.status(200).json(res.locals.user));
+
+export default router;

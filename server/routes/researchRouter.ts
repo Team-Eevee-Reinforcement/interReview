@@ -15,4 +15,4 @@ router.post('/', controller.addLink, (req: Request, res: Response) => res.status
 // delete a research link
 router.delete('/:id', controller.deleteLink, (req: Request, res: Response) => res.status(200).json(res.locals.link));
 
-module.exports = router;
+export default router;

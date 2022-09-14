@@ -16,4 +16,4 @@ router.post('/', controller.addInterview, (req: Request, res: Response) => res.s
 // delete an interview
 router.delete('/:id', controller.deleteInterview, (req: Request, res: Response) => res.status(200).json(res.locals.interview));
 
-module.exports = router;
+export default router;
