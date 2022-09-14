@@ -1,11 +1,10 @@
-const express = require('express');
+import express from 'express';
 // import { Request, Response } from "express";
-const path = require('path');
-
-const cardRouter = require('./routes/cardRouter');
-const interviewRouter = require('./routes/interviewRouter');
-const researchRouter = require('./routes/researchRouter');
-const userRouter = require('./routes/userRouter');
+import path from 'path';
+import cardRouter from './routes/cardRouter';
+import interviewRouter from './routes/interviewRouter';
+import researchRouter from './routes/researchRouter';
+import userRouter from './routes/userRouter';
 
 const axios = require('axios');
 
@@ -18,7 +17,7 @@ const app = express();
  * in req.body
  */
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // routers
 app.use('/card', cardRouter);

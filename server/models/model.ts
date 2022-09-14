@@ -70,6 +70,6 @@ pool.connect( (err:string) => {
 export default {
   query: (text: string, params: string, values: any[]) => {
     console.log('executed query', text);
-    return pool.query(text, params);
+    return pool.query(params, values);
   }
 };
