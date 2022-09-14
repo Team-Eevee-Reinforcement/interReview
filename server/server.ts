@@ -9,8 +9,6 @@ const userRouter = require('./routes/userRouter');
 
 const axios = require('axios');
 
-const axios = require('axios');
-
 const PORT = 3000;
 
 const app = express();
@@ -27,14 +25,6 @@ app.use('/card', cardRouter);
 app.use('/interview', interviewRouter);
 app.use('/research', researchRouter);
 app.use('/user', userRouter);
-
-let access_token = "";
-
-const clientID = '03816ddd24e96db22b7c';
-
-const clientSecret = '5249bed44c6a51eabd3dd0ae182fa03650f132c8';
-
-app.set('view engine', 'ejs');
 
 let access_token = "";
 
