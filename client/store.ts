@@ -3,6 +3,4 @@ import { } from 'redux';
 import thunk from 'redux-thunk';
 // import reducers from './reducers/reducer.ts';
 
-
-
 export default;

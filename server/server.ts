@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
  * root
  */
 app.get('/', (req: any, res: any) => {
-  res.render(path.resolve(__dirname, '../src/index.html'), {client_id: clientID});
+  res.render(path.resolve(__dirname, '../client/pages/index.ejs'), {client_id: clientID});
 });
 
 app.get('/login/oauth', (req: any, res: any) => {

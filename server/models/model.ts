@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 // add URI before compiling
-import { PG_URI } from '../../secrets'
+// import { PG_URI } from '../../secrets'
 
 // create a new pool here using the connection string above
 const pool = new Pool({
