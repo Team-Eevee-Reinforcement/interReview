@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import actions from '../actions/actionCreators';
 import InterviewCreator from '../components/InterviewCreator';
-import InterviewDisplay from '../components/InterviewDisplay';
+import InterviewsDisplay from '../components/InterviewsDisplay';
 
 //typescript??
 // const mapStateToProps = store: {(userId: string), 
@@ -77,9 +77,9 @@ const mapStateToProps = (store: any) => ({
             date={this.props.updateDate}
           />
           <hr/> 
-          <InterviewDisplay interview={this.props}
-
-                            deleteCard={this.props.deleteCard} />
+          <InterviewsDisplay interview={this.props}
+                            deleteCard={this.props.deleteCard}
+                            addQuestion={this.props.addQuestion}/>
         </div>
       )
     }

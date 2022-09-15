@@ -85,6 +85,24 @@ const interviewReducer = (state=initialState, action: any) => {
         date:'',
       };
 
+
+      case types.SET_JOB_TITLE:
+        return { 
+          ...state,
+          jobTitle: action.payload,
+        };
+
+        case types.SET_INTERVIEW_STAGE:
+        return { 
+          ...state,
+          interviewStage: action.payload,
+        };
+
+        case types.SET_DATE:
+          return {
+            ...state,
+            date: action.payload,
+        };
   //   case types.DELETE_CARD:
   //     interviewList = state.interviewList.slice();
   //     for(let i = 0; i < interviewList.length; i++) {

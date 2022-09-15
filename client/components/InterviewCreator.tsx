@@ -4,29 +4,36 @@ const InterviewCreator = (props:any) => (
   <div>
     <form>
       <h4>Create Interview</h4>
-      <label htmlFor="newInterview">JobTitle:</label>
+      <label htmlFor="newInterview">JobTitle:
       <input id="jobTitle" 
       type="text"  
-      onChange={e => {props.updateJobTitle(e.target.value)}} 
-      value={props.jobTitle}
-      />
+      onChange={props.updateJobTitle} 
+      ///value={props.jobTitle}
+      /></label>
       
-      <label htmlFor="newInterview">Interview Stage:</label>
+      <label htmlFor="newInterview">Interview Stage:
       <input id='interviewStage' 
       type="text" 
-      onChange={e => {props.updateInterviewStage(e.target.value)}}
-      value={props.interviewStage}
-      />
+      onChange={props.updateInterviewStage}
+      ///value={props.interviewStage}
+      /></label>
 
-      <label htmlFor="newInterview">Date:</label>
+      {/* <label htmlFor="newInterview">Date:
       <input id='date' 
       type='text' 
-      onChange={e => {props.updateDate(e.target.value)}} 
-      value={props.date}
-      />
+      onChange={e => {props.updateDate(e.target.value)}} //add handler
+      ////value={props.date}
+      /></label> */}
+
+    
+    <label htmlFor="newInterview">Date:
+      <input id='date' 
+      type='text' 
+      onChange= {props.updateDate} 
+      /></label>
       
       <button type="button" 
-      onClick={(e) => props.createInterview(e, props.userId, props.interviewId, props.jobTitle, props.interviewStage, props.date)}>
+      onClick={props.createInterview}>
         Add Interview
         </button>
     </form>
