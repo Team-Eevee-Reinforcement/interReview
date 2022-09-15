@@ -15,4 +15,7 @@ router.post('/', controller.addCard, (req: Request, res: Response) => res.status
 // delete a card
 router.delete('/:id', controller.deleteCard, (req: Request, res: Response) => res.status(200).json(res.locals.card));
 
+// update a card -- card_notes
+router.patch('/:id', controller.updateCardNotes, (req: Request, res: Response) => res.status(200).json(res.locals.card));
+
 export default router;
