@@ -25,7 +25,7 @@ describe("Test cardRouter.ts, status codes", () => {
 
     describe('POST', () => {
       it("Add a card", () => request(app).post("/card")
-        .send({"interview_id": 1, "question": "question", "category": "category", "card_notes": "notes"}) // send card
+        .send({"id": 7, "interview_id": 1, "question": "question", "category": "category", "card_notes": "notes"}) // send card
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
