@@ -6,7 +6,7 @@ import interviewRouter from './routes/interviewRouter';
 import researchRouter from './routes/researchRouter';
 import userRouter from './routes/userRouter';
 
-const axios = require('axios');
+import axios from 'axios';
 
 const PORT = 3000;
 
@@ -37,36 +37,71 @@ app.set('view engine', 'ejs');
  * root
  */
 app.get('/', (req: any, res: any) => {
-  res.render(path.resolve(__dirname, '../client/pages/index.ejs'), {client_id: clientID});
+  res.render('pages/index', {client_id: clientID});
 });
 
-app.get('/login/oauth', (req: any, res: any) => {
-  const requestToken = req.query.code;
+// Declare the callback route
+app.get('/login/oauth', (req, res) => {
+
+  // The req.query object has the query params that were sent to this route.
+  const requestToken = req.query.code
+  
   axios({
     method: 'post',
-    url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret
-    =${requestToken}`,
+    url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
+    // Set the content type header, so that we get the response in JSON
     headers: {
-      accept: 'application/json'
+         accept: 'application/json'
     }
-  }).then((res: any) => {
-    access_token = res.data.access_token
+  }).then((response) => {
+    access_token = response.data.access_token
     res.redirect('/success');
   })
-
 })
 
-app.get('/success', (req: any, res: any) => {
+app.get('/success', function(req, res) {
+
   axios({
     method: 'get',
-    url: `https://api.github/com/user`,
+    url: `https://api.github.com/user`,
     headers: {
       Authorization: 'token ' + access_token
     }
-  }).then((response: any) => {
-    res.render('pages/sucess', { userData: response.data })
+  }).then((response) => {
+    res.render('pages/success',{ userData: response.data });
   })
 });
+
+// app.get('/login/oauth', (req: any, res: any) => {
+//   const requestToken = req.query.code;
+//   axios({
+//     method: 'post',
+//     url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
+//     headers: {
+//       accept: 'application/json'
+//     }
+//   }).then((response: any) => {
+//     // console.log(res);
+//     access_token = response.data.access_token
+//     console.log("ACCESS TOKEN! ", access_token)
+//     res.redirect('/success');
+//     // res.redirect(path.resolve(__dirname, '../client/pages/success.ejs')); // res.redirect('/success');
+//   })
+
+// })
+
+// app.get('/success', (req: any, res: any) => {
+//   axios({
+//     method: 'get',
+//     url: `https://api.github/com/user`,
+//     headers: {
+//       Authorization: 'token ' + access_token
+//     }
+//   }).then((response: any) => {
+//     console.log("finished get request", response.data)
+//     res.render('../client/pages/success.ejs', { userData: response.data })
+//   })
+// });
 
 /**
  * 404 handler
