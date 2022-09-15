@@ -5,9 +5,9 @@ export class interviewController {
   addInterview(req: Request, res: Response, next: any) {
     try {
       console.log("REQUEST BODY: ", req.body)
-
+      const date = new Date(req.body.date);
       const queryText = 'INSERT INTO interviews (user_id, job_title, interview_stage, date) VALUES ($1, $2, $3, $4) RETURNING id;';
-      const values = [req.body.user_id, req.body.job_title, req.body.interview_stage, req.body.date];
+      const values = [req.body.user_id, req.body.job_title, req.body.interview_stage, date];
 
       // console.log("values: ", values)
       db.query('add-interview', queryText, values).then((data: any) => {
@@ -61,6 +61,13 @@ export class interviewController {
   }
 
   updateInterviewStage(req: Request, res: Response, next: any) {
-    
+    const updateInterviewStage = `UPDATE interviews SET interview_stage='${req.body.stage}' WHERE id=${req.params.id} RETURNING *;`
+    db.query('update-interview-stage', updateInterviewStage, []).then((data: any) => {
+      console.log("data: ", data)
+      res.locals.interview = data.rows;
+      return next();
+    }).catch((err: any) => {
+      return next(err);
+    })
   }
 };
