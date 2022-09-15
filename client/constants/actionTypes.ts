@@ -17,5 +17,12 @@ export const DELETE_RESEARCH = 'DELETE_RESEARCH'
 //Edit question 
 export const EDIT_RESEARCH = 'EDIT_RESEARCH'
 
+export const SET_JOB_TITLE = 'SET_JOB_TITLE'
+
+export const SET_DATE = 'SET_DATE'
+export const SET_INTERVIEW_STAGE = 'SET_INTERVIEW_STAGE'
+
+
+
 
 

@@ -19,7 +19,7 @@ module.exports = {
       publicPath: '/dist',
     },
     proxy: {
-      '/*': 'http://localhost:3000',
+      '/': 'http://localhost:3000',
     },
   },
   module: {
