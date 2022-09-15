@@ -25,11 +25,11 @@ export class researchController {
 
   getLinks(req: Request, res: Response, next: any) {
     // get all links for a specific card
-    const getCards = `SELECT research.* FROM research 
+    const getLinks = `SELECT research.* FROM research 
       WHERE research.card_id=${req.params.card_id};`;
-    db.query('get-cards', getCards, []).then((data: any) => {
-      res.locals.cards = data.rows;
-      console.log(res.locals.cards);
+    db.query('get-links', getLinks, []).then((data: any) => {
+      res.locals.links = data.rows;
+      console.log(res.locals.links);
       return next();
     }).catch((err: any) => {
       return next(err);
@@ -61,6 +61,13 @@ export class researchController {
   }
 
   updateResearchNotes(req: Request, res: Response, next: any) {
-    return next();
+    const updateResearchNotes = `UPDATE research SET research_notes='${req.body.notes}' WHERE id=${req.params.id} RETURNING *;`
+    db.query('update-research-notes', updateResearchNotes, []).then((data: any) => {
+      console.log("data: ", data)
+      res.locals.research = data.rows;
+      return next();
+    }).catch((err: any) => {
+      return next(err);
+    })
   }
 };

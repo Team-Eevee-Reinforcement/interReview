@@ -63,12 +63,12 @@ export class cardController {
   }
 
   updateCardNotes(req: Request, res: Response, next: any) {
-    console.log("updating")
-    console.log(req.body.notes);
-    console.log(req.params.id);
+    // console.log("updating")
+    // console.log(req.body.notes);
+    // console.log(req.params.id);
     const updateCardNotes = `UPDATE cards SET card_notes='${req.body.notes}' WHERE id=${req.params.id} RETURNING *;`
     db.query('update-card-notes', updateCardNotes, []).then((data: any) => {
-      console.log("data: ", data)
+      // console.log("data: ", data)
       res.locals.card = data.rows;
       return next();
     }).catch((err: any) => {

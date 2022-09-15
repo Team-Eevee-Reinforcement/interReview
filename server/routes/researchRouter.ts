@@ -16,6 +16,6 @@ router.post('/', controller.addLink, (req: Request, res: Response) => res.status
 router.delete('/:id', controller.deleteLink, (req: Request, res: Response) => res.status(200).json(res.locals.link));
 
 // update a resource: research_notes
-router.patch('/:id', controller.updateResearchNotes, (req: Request, res: Response) => res.status(200).json(res.locals.card));
+router.patch('/:id', controller.updateResearchNotes, (req: Request, res: Response) => res.status(200).json(res.locals.research));
 
 export default router;
