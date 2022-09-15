@@ -68,10 +68,17 @@ app.get('/success', function(req, res) {
   }).then((response) => {
     const queryText = 'INSERT INTO users (id, name) VALUES ($1, $2) RETURNING id;';
     const values = [response.data.id, response.data.login];
-      db.query('add-user', queryText, values).then((data: any) => {
-        console.log(data)
-
-      })
+    const selectText = `SELECT * FROM users WHERE id=${response.data.id};`;
+    db.query('find-user', selectText, []).then((data: any) => {
+      if (!data.rows[0].id || data.rows[0].id !== response.data.id) {
+        db.query('add-user', queryText, values).then((data: any) => {
+          console.log(data)
+        })
+      }
+    })
+      // db.query('add-user', queryText, values).then((data: any) => {
+      //   console.log(data)
+      // })
     res.render('pages/success',{ userData: response.data });
   })
 });

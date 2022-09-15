@@ -54,7 +54,7 @@ setJobTitle = (jobTitle: string) => ({
 
 // //Add question card
  addCard = () => ({
-  type: types.ADD_CARD',
+  type: types.ADD_CARD,
   
  }) 
 
