@@ -25,7 +25,7 @@ setJobTitle = (jobTitle: string) => ({
 
 
  createInterview = (userId: number, interviewId: number, jobTitle: string, interviewStage: string, date: string) => (dispatch: any) => {
-  
+    console.log('creat interview', userId, interviewId, jobTitle, interviewStage, date)
     fetch('/interview', {
       method: 'POST',
       body: JSON.stringify({ user_id: userId, job_title: jobTitle, interview_stage: interviewStage, date}),
@@ -41,19 +41,23 @@ setJobTitle = (jobTitle: string) => ({
     .catch(err => console.log('Error in createInterview fetch:', err));
   };
   
-//Delete question card
+//Delete interview card
  delInt = (interviewId: number) => ({
     type: types.DELETE_INT,
     payload:{interviewId}
 })
-//Edit question 
+//Edit interivew status 
  editInt = (interviewId: number, jobTitle: string, interviewStage: string) => ({
     type: types.EDIT_INT,
     payload: {interviewStage},
 })
 
 // //Add question card
-// type: 'ADD_CARD'
+ addCard = () => ({
+  type: types.ADD_CARD',
+  
+ }) 
+
 // //Delete question card
 // type: 'DELETE_CARD'
 // //Edit question 

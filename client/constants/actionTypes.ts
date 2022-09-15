@@ -16,10 +16,11 @@ export const ADD_RESEARCH = 'ADD_RESEARCH'
 export const DELETE_RESEARCH = 'DELETE_RESEARCH'
 //Edit question 
 export const EDIT_RESEARCH = 'EDIT_RESEARCH'
-
+//Add interview Job Title to database
 export const SET_JOB_TITLE = 'SET_JOB_TITLE'
-
+//Add ionterview Date to database
 export const SET_DATE = 'SET_DATE'
+//Add interview stage to database
 export const SET_INTERVIEW_STAGE = 'SET_INTERVIEW_STAGE'
 
 

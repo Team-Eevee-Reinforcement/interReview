@@ -1,18 +1,26 @@
-/* * {
+* {
     box-sizing: border-box;
-    font-family: 'Ubuntu Light', 'Century Gothic', sans-serif;
+    font-family: sans-serif,'Ubuntu Light', 'Century Gothic', ;
     margin: 0;
     padding: 0;
     color: #000000;
-    background-color: #fff;
+}
+
+.container {
+    background-color: aliceblue;
 }
 
 body {
     padding-top: 10px;
+    background-color:  rgba(238, 230, 117, 0.379);
+}
+
+h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 60px; font-weight: bold; letter-spacing: -1px; line-height: 1; 
+
 }
 
 .outerBox {
-    max-width: 600px;
+    max-width: auto;
     margin: 0 auto;
     padding: 10px;
     box-shadow: 10px 15px 39px rgba(0, 0, 0, .2);
@@ -20,10 +28,12 @@ body {
 }
 
 .innerbox {
+    max-width: 950px;
     padding: 10px;
     width: 95%;
     margin: 15px auto;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+   
 }
 
 .displayBox {
@@ -37,7 +47,7 @@ body {
     margin: 5px 5px 13px 10px;
     float: left;
     font-size: .8em;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .2)
 }
 
 #header {
@@ -61,4 +71,4 @@ label {
 button {
     padding: 3px;
     margin: 3px;
-} */
+} 
