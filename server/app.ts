@@ -5,7 +5,7 @@ import cardRouter from './routes/cardRouter';
 import interviewRouter from './routes/interviewRouter';
 import researchRouter from './routes/researchRouter';
 import userRouter from './routes/userRouter';
-
+import db from './models/model';
 import axios from 'axios';
 
 const app = express();
@@ -66,6 +66,17 @@ app.get('/success', function(req, res) {
       Authorization: 'token ' + access_token
     }
   }).then((response) => {
+    console.log('this is response from userData', response);
+    console.log('this is response.data.login', response.data.login);
+    console.log('this is response.data.id', response.data.id)
+    const queryText = 'INSERT INTO users (id, name) VALUES ($1, $2) RETURNING id;';
+    const values = [response.data.id, response.data.login];
+
+    //   console.log("values: ", values)
+      db.query('add-user', queryText, values).then((data: any) => {
+        console.log(data)
+
+      })
     res.render('pages/success',{ userData: response.data });
   })
 });
