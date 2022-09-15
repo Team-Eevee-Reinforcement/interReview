@@ -5,7 +5,7 @@ const router = express.Router();
 const controller = new interviewController();
 
 // get all interviews
-router.get('/', controller.getInterviews, (req: Request, res: Response) => res.status(200).json(res.locals.interviews));
+router.get('/all/:user_id', controller.getInterviews, (req: Request, res: Response) => res.status(200).json(res.locals.interviews));
 
 // get one interview
 router.get('/:id', controller.getInterview, (req: Request, res: Response) => res.status(200).json(res.locals.interview));
@@ -16,4 +16,7 @@ router.post('/', controller.addInterview, (req: Request, res: Response) => res.s
 // delete an interview
 router.delete('/:id', controller.deleteInterview, (req: Request, res: Response) => res.status(200).json(res.locals.interview));
 
-module.exports = router;
+// update an interview -- interview_stage
+router.patch('/:id', controller.updateInterviewStage, (req: Request, res: Response) => res.status(200).json(res.locals.interview));
+
+export default router;

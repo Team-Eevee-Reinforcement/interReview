@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
 // import { Request, Response } from "express";
-const path = require('path');
+import path from 'path';
+import cardRouter from './routes/cardRouter';
+import interviewRouter from './routes/interviewRouter';
+import researchRouter from './routes/researchRouter';
+import userRouter from './routes/userRouter';
 
-const cardRouter = require('./routes/cardRouter');
-const interviewRouter = require('./routes/interviewRouter');
-const researchRouter = require('./routes/researchRouter');
-const userRouter = require('./routes/userRouter');
+const axios = require('axios');
 
 const PORT = 3000;
 
@@ -16,7 +17,7 @@ const app = express();
  * in req.body
  */
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // routers
 app.use('/card', cardRouter);
@@ -24,11 +25,47 @@ app.use('/interview', interviewRouter);
 app.use('/research', researchRouter);
 app.use('/user', userRouter);
 
+let access_token = "";
+
+const clientID = '03816ddd24e96db22b7c';
+
+const clientSecret = '5249bed44c6a51eabd3dd0ae182fa03650f132c8';
+
+app.set('view engine', 'ejs');
+
 /**
  * root
  */
 app.get('/', (req: any, res: any) => {
-  res.sendFile(path.resolve(__dirname, '../src/index.html'))
+  res.render(path.resolve(__dirname, '../client/pages/index.ejs'), {client_id: clientID});
+});
+
+app.get('/login/oauth', (req: any, res: any) => {
+  const requestToken = req.query.code;
+  axios({
+    method: 'post',
+    url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret
+    =${requestToken}`,
+    headers: {
+      accept: 'application/json'
+    }
+  }).then((res: any) => {
+    access_token = res.data.access_token
+    res.redirect('/success');
+  })
+
+})
+
+app.get('/success', (req: any, res: any) => {
+  axios({
+    method: 'get',
+    url: `https://api.github/com/user`,
+    headers: {
+      Authorization: 'token ' + access_token
+    }
+  }).then((response: any) => {
+    res.render('pages/sucess', { userData: response.data })
+  })
 });
 
 /**
