@@ -11,7 +11,7 @@ router.get('/all/:user_id', controller.getInterviews, (req: Request, res: Respon
 router.get('/:id', controller.getInterview, (req: Request, res: Response) => res.status(200).json(res.locals.interview));
 
 // add an interview
-router.post('/', controller.addInterview, (req: Request, res: Response) => res.status(200).json(res.locals.interview));
+router.post('/', controller.addInterview, (req: Request, res: Response) => res.status(200).json({id: res.locals.newInterviewId}));
 
 // delete an interview
 router.delete('/:id', controller.deleteInterview, (req: Request, res: Response) => res.status(200).json(res.locals.interview));

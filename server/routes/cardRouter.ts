@@ -10,7 +10,7 @@ router.get('/all/:user_id', controller.getCards, (req: Request, res: Response) =
 router.get('/:id', controller.getCard, (req: Request, res: Response) => res.status(200).json(res.locals.card));
 
 // add a card
-router.post('/', controller.addCard, (req: Request, res: Response) => res.status(200).json(res.locals.newCardId));
+router.post('/', controller.addCard, (req: Request, res: Response) => res.status(200).json({id: res.locals.newCardId}));
 
 // delete a card
 router.delete('/:id', controller.deleteCard, (req: Request, res: Response) => res.status(200).json(res.locals.card));

@@ -5,7 +5,8 @@ import { PG_URI } from '../../secrets'
 
 // create a new pool here using the connection string above
 const pool = new Pool({
-  connectionString: PG_URI
+  connectionString: PG_URI,
+  max: 3,
 });
 
 pool.connect( (err:string) => {
