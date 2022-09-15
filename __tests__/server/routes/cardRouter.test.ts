@@ -42,7 +42,7 @@ describe("Test cardRouter.ts, status codes", () => {
     });
 
     describe('DELETE', () => {
-      it("Add a card", () => request(app).delete("/card/1")
+      it("Delete a card", () => request(app).delete(`/card/7`)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)

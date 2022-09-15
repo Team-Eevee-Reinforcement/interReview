@@ -15,7 +15,7 @@ export class userController {
       const values = [req.body.name, req.body.email];
       const result = await db.query('add-user', queryText, values);
       console.log(result);
-      res.locals.newUserId = result.rows.id;
+      // res.locals.newUserId = result.rows.id;
       return next();
     }
     catch (err: any) {
