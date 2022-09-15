@@ -4,7 +4,7 @@
   "description": "Reinforcement Project",
   "main": "index.tsx",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --verbose",
     "start": "tsc && node ./server/server.ts",
     "dev": "concurrently \"NODE_ENV=development nodemon server/server.ts\" \"NODE_ENV=development webpack serve --open --hot\""
   },

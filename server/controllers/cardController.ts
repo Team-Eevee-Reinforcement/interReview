@@ -4,14 +4,14 @@ import db from '../models/model';
 export class cardController {
   addCard(req: Request, res: Response, next: any) {
     try {
-      console.log("REQUEST BODY: ", req.body)
+      // console.log("REQUEST BODY: ", req.body)
 
       const queryText = 'INSERT INTO cards (interview_id, question, category, card_notes, confidence_level) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
       const values = [req.body.interview_id, req.body.question, req.body.category, req.body.card_notes, 0];
 
-      console.log("values: ", values)
+      // console.log("values: ", values)
       db.query('add-card', queryText, values).then((data: any) => {
-        console.log(data)
+        // console.log(data)
         res.locals.newCardId = data.rows.id;
         return next();
       }).catch((err: any) => {
@@ -31,7 +31,7 @@ export class cardController {
       WHERE interviews.user_id=${req.params.user_id};`;
     db.query('get-cards', getCards, []).then((data: any) => {
       res.locals.cards = data.rows;
-      console.log(res.locals.cards);
+      // console.log(res.locals.cards);
       return next();
     }).catch((err: any) => {
       return next(err);
@@ -42,7 +42,7 @@ export class cardController {
     const getCard = `SELECT * FROM cards WHERE id=${req.params.id};`;
     db.query('get-card', getCard, []).then((data: any) => {
       res.locals.card = data.rows;
-      console.log(res.locals.card)
+      // console.log(res.locals.card)
       return next();
     }).catch((err: any) => {
       return next(err);
