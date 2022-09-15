@@ -66,13 +66,8 @@ app.get('/success', function(req, res) {
       Authorization: 'token ' + access_token
     }
   }).then((response) => {
-    console.log('this is response from userData', response);
-    console.log('this is response.data.login', response.data.login);
-    console.log('this is response.data.id', response.data.id)
     const queryText = 'INSERT INTO users (id, name) VALUES ($1, $2) RETURNING id;';
     const values = [response.data.id, response.data.login];
-
-    //   console.log("values: ", values)
       db.query('add-user', queryText, values).then((data: any) => {
         console.log(data)
 
